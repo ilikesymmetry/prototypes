@@ -16,19 +16,19 @@ While OpenSea and other typical NFT dApps will likely only know to render the co
 
 ## Design decisions
 
-### Backwards compatibility with ERC1155
+### 1. Backwards compatibility with ERC1155
 
 Standards for graphs do not seem to exist in EVM consciousness, which leaves an opportunity to create something fundamentally new. However, it is ideal to build on top of each other where possible and fundamentally, ERC1155 converges to nearly equivalent storage patterns for graph design and covers a subset of metadata needs, which is nearly begging us to simply extend it. By extending ERC1155, we give ourselves an opportunity to create product-led-growth for graph-like tokens where users can be delighted to see traces of reputation in their wallets immediately after adopting and can become curious by seeing the contents in others' wallets.
 
 Hopefully the minor alterations and wrapping of ERC1155 comes intuitive to others and this can motivate followers and contributors on a path to an EIP.
 
-### No new events
+### 2. No new events
 
 New events were not added intentionally to not create ambiguity or asynchronization risk with the core ERC1155 `TransferSingle` and `TransferBatch` events. This places a larger burden on indexers to intuit and parse `tokenId` in these events into the `graphId` and `distributor` according to our specification. However, there is an additional benefit that all 4 core properties are `indexed` when normally only 3 `indexed` arguments are allowed at a time, enabled by virtue of compressing two items into `tokenId`.
 
-### Pending: Approval compliance
+### 3. Pending: Approval compliance
 
-**A) Partially-violate ERC1155 by flipping approval direction**
+**A) Partially-violate ERC1155 by flipping approval direction** `current implementation`
 
 - owners do not control their tokens, distributors do and distributors can approve other addresses to manage their distributions
 - tradeoffs: risk breaking standard, creating unexpected dApp behavior, and annoying people
