@@ -103,4 +103,32 @@ contract DirectedMultigraph is ERC1155, IDirectedMultigraph {
     ) public virtual {
         safeBatchTransferFrom(from, to, GraphEncoding.encodeNodes(graphIds, distributors), amounts, data);
     }
+
+    function _mint(uint96 graphId, address distributor, address to, uint256 amount, bytes memory data)
+        internal
+        virtual
+    {
+        _mint(to, GraphEncoding.encodeNode(graphId, distributor), amount, data);
+    }
+
+    function _mintBatch(
+        uint96[] memory graphIds,
+        address[] memory distributors,
+        address to,
+        uint256[] memory amounts,
+        bytes memory data
+    ) internal virtual {
+        _mintBatch(to, GraphEncoding.encodeNodes(graphIds, distributors), amounts, data);
+    }
+
+    function _burn(uint96 graphId, address distributor, address from, uint256 amount) internal virtual {
+        _burn(from, GraphEncoding.encodeNode(graphId, distributor), amount);
+    }
+
+    function _burnBatch(uint96[] memory graphIds, address[] memory distributors, address from, uint256[] memory amounts)
+        internal
+        virtual
+    {
+        _burnBatch(from, GraphEncoding.encodeNodes(graphIds, distributors), amounts);
+    }
 }
