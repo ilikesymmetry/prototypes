@@ -3,6 +3,7 @@ pragma solidity ^0.8.13;
 
 import {ERC1155} from "lib/openzeppelin-contracts/contracts/token/ERC1155/ERC1155.sol";
 import {IDirectedMultigraph} from "./IDirectedMultigraph.sol";
+import {GraphEncoding} from "./GraphEncoding.sol";
 
 /// @notice Opinionated extension of ERC1155 for modeling graph problems via [directed multigraphs](https://en.wikipedia.org/wiki/Multigraph).
 ///         Potentially useful for endorsement graphs like Coordinape or other complex multiplayer games.
@@ -101,29 +102,5 @@ contract DirectedMultigraph is ERC1155, IDirectedMultigraph {
         bytes memory data
     ) public virtual {
         safeBatchTransferFrom(from, to, GraphEncoding.encodeNodes(graphIds, distributors), amounts, data);
-    }
-}
-
-library GraphEncoding {
-    function decodeNode(uint256 tokenId) public pure returns (uint96 graphId, address node) {
-        graphId = uint96(tokenId >> 160);
-        node = address(uint160(tokenId));
-    }
-
-    function encodeNode(uint96 graphId, address node) public pure returns (uint256 tokenId) {
-        tokenId = (uint256(graphId) << 160) | uint256(uint160(node));
-    }
-
-    function encodeNodes(uint96[] memory graphIds, address[] memory distributors)
-        public
-        pure
-        returns (uint256[] memory ids)
-    {
-        uint256 len = graphIds.length;
-        require(len == distributors.length);
-        ids = new uint256[](len);
-        for (uint256 i; i < len; i++) {
-            ids[i] = encodeNode(graphIds[i], distributors[i]);
-        }
     }
 }

@@ -4,7 +4,7 @@ Opinionated extension of ERC1155 for modeling graph problems via [directed multi
 
 Potentially useful for endorsement graphs like Coordinape or other complex multiplayer games.
 
-Map to ERC1155 interface by organizing the layout of `tokenId` in a specific manner. First, we introduce a "distributor" address as the origin of an edge in our graph into the `tokenId`. With 96 bits leftover in `tokenId`, include a `uint96 graphId` to superimpose multiple graphs per distributor-owner pair, hence "multigraph". Together, a `tokenId` is the combination of a `distributor` (`address`) and a `graphId` (`uint96`). All combined, a directed multigraph of ERC1155 re-conceptualizes ownership from `balanceOf(uint256 tokenId, address owner)` to `balanceOf(uint96 graphId, address distributor, address owner)` and replicates this pattern into the other standard functionality.
+Map to ERC1155 interface by organizing the layout of `tokenId` in a specific manner. First, we introduce a "distributor" address as the origin of an edge in our graph into the `tokenId`. With 96 bits leftover in `tokenId`, include a `uint96 graphId` to superimpose multiple graphs per distributor-owner pair, hence "multigraph". Together, a `tokenId` is the combination of a `distributor` (`address`) and a `graphId` (`uint96`). All combined, a directed multigraph of ERC1155 re-conceptualizes ownership from `balanceOf(uint256 tokenId, address owner)` to `balanceOf(uint96 graphId, address distributor, address owner)` and replicates this pattern into the other standard functionality. Learn more about the translation between `graphId` + `distributor` and a traditional `tokenId` within the [GraphEncoding library](./GraphEncoding.sol).
 
 ## Example use
 
