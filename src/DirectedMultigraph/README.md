@@ -4,7 +4,7 @@ Opinionated extension of ERC1155 for modeling graph problems via [directed multi
 
 Potentially useful for endorsement graphs like Coordinape or other complex multiplayer games.
 
-Encode a "distributor" address into the `tokenId` of an ERC1155 token to create an edge model of (distributor => owner) => value. With 96 bits left in `tokenId`, use for superimposing multiple graphs. Together, a `tokenId` is the combination of a `distributor` (`address`) and a `graphId` (`uint96`). All combined, a directed multigraph of ERC1155 re-conceptualizes ownership balances `balanceOf(uint256 tokenId, address owner)` to `balanceOf(uint96 graphId, address distributor, address owner)`.
+Map to ERC1155 interface by organizing the layout of `tokenId` in a specific manner. First, we introduce a "distributor" address as the origin of an edge in our graph into the `tokenId`. With 96 bits leftover in `tokenId`, include a `uint96 graphId` to superimpose multiple graphs per distributor-owner pair, hence "multigraph". Together, a `tokenId` is the combination of a `distributor` (`address`) and a `graphId` (`uint96`). All combined, a directed multigraph of ERC1155 re-conceptualizes ownership from `balanceOf(uint256 tokenId, address owner)` to `balanceOf(uint96 graphId, address distributor, address owner)` and replicates this pattern into the other standard functionality.
 
 ## Example use
 
@@ -28,7 +28,7 @@ New events were not added intentionally to not create ambiguity or asynchronizat
 
 ### 3. Pending: Approval compliance
 
-**A) Partially-violate ERC1155 by flipping approval direction** `current implementation`
+**A) Partially-violate ERC1155 by flipping approval direction** `(latest)`
 
 - owners do not control their tokens, distributors do and distributors can approve other addresses to manage their distributions
 - tradeoffs: risk breaking standard, creating unexpected dApp behavior, and annoying people
