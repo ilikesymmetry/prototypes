@@ -12,7 +12,7 @@ For someone to have access to an operation, they must either hold the role corre
 
 ### 2. 2-step owner transfers
 
-While optional, a 2-step process for `owner` transfer is enabled and recommended given the high-severity if accidentally transferred to an incorrect address.
+While optional, a 2-step process for `owner` transfer is enabled and recommended given the high-severity if accidentally transferred to an incorrect address. First the current owner must publish the next owner and then this pending owner must accept the transfer to complete the process.
 
 ### 3. Additional setup on granted accounts `(optional)`
 

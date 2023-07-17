@@ -9,12 +9,8 @@ contract Access is Ownable2Step, AccessControl, SetUp {
     bytes32 public constant ADMIN_ROLE = keccak256(abi.encodePacked("ADMIN"));
 
     function hasRole(bytes32 role, address account) public view override returns (bool) {
-        // owns role, owns admin role, or is owner
-        return super.hasRole(role, account) || hasAdminRole(role, account) || account == owner();
-    }
-
-    function hasAdminRole(bytes32 role, address account) public view returns (bool) {
-        return super.hasRole(getRoleAdmin(role), account);
+        // has role, has admin role, or is owner
+        return super.hasRole(role, account) || super.hasRole(getRoleAdmin(role), account) || account == owner();
     }
 
     function getRoleAdmin(bytes32 role) public view override returns (bytes32) {
