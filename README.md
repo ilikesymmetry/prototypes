@@ -4,4 +4,4 @@ Open repository of thoughts that come to mind that seem worth writing down and s
 
 1. [Directed Multigraph](./src/DirectedMultigraph/): Extension of ERC1155 for modeling graph problems
 2. [Access](./src/Access/): Generalized layer for extensible role systems and multi-tiered management
-3. [Guarded](./src/Guarded/): Generalized layer for modularizing requirement checks on operations.
+3. [Guards](./src/Guards/): Generalized layer for modularizing requirement checks on operations.
