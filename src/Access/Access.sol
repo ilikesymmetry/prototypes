@@ -5,7 +5,7 @@ import {AccessControl} from "lib/openzeppelin-contracts/contracts/access/AccessC
 import {Ownable2Step} from "lib/openzeppelin-contracts/contracts/access/Ownable2Step.sol";
 import {SetUp} from "src/SetUp.sol";
 
-contract Access is Ownable2Step, AccessControl, SetUp {
+abstract contract Access is Ownable2Step, AccessControl, SetUp {
     bytes32 public constant ADMIN_ROLE = keccak256(abi.encodePacked("ADMIN"));
 
     function hasRole(bytes32 role, address account) public view override returns (bool) {
