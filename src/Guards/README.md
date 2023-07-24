@@ -27,3 +27,7 @@ Different operations may have different schema shapes to define an operation. To
 ### 4. Additional setup on guards `(optional)`
 
 Guards may or may not be stateful. For guards that are stateful, a single `external setUp(...args)` function is encouraged for readability and consistency. When guarding an operation, users can atomically set up the Guard's state in one transaction through `guardOperationAndSetUp(bytes32 operation, address guard, data setUpData)`.
+
+## Examples
+
+- [TimeRangeGuard](./examples/TimeRangeGuard.sol): Only allow operations within a defined time window.

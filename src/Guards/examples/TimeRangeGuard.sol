@@ -4,7 +4,7 @@ pragma solidity ^0.8.13;
 import {IGuard} from "../IGuard.sol";
 
 /// @notice Example Guard for setting valid time ranges for given operations
-contract TimeGuard is IGuard {
+contract TimeRangeGuard is IGuard {
     event SetUp(address indexed primitive, uint48 indexed start, uint48 indexed end);
 
     struct TimeRange {
