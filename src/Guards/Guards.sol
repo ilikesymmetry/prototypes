@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import {IGuarded} from "./IGuarded.sol";
+import {IGuards} from "./IGuards.sol";
 import {IGuard} from "./IGuard.sol";
 import {SetUp} from "src/SetUp.sol";
 
-abstract contract Guarded is IGuarded, SetUp {
+abstract contract Guards is IGuards, SetUp {
     // default value for a guard that always rejects
     address constant MAX_ADDRESS = 0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF;
 

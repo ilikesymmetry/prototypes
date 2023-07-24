@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-interface IGuarded {
+interface IGuards {
     event Guarded(bytes32 indexed operation, address indexed guard);
 
     error GuardRejected(bytes32 operation, address operator, address guard, bytes data);
