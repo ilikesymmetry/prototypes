@@ -2,7 +2,7 @@
 
 Generalized extension layer for modularizing fallback behavior.
 
-Inspired by Diamond Proxies/ERC-2535 and Thirdweb's [Dynamic Contracts Standard](https://github.com/thirdweb-dev/dynamic-contracts/tree/main)
+Inspired by [ERC-2535](https://eips.ethereum.org/EIPS/eip-2535) and Thirdweb's [Dynamic Contracts](https://github.com/thirdweb-dev/dynamic-contracts/tree/main).
 
 ## Design decisions
 
@@ -12,7 +12,7 @@ Inspired by Diamond Proxies/ERC-2535 and Thirdweb's [Dynamic Contracts Standard]
 
 ### 1. Lean implementation
 
-[ERC-2535 Diamonds](https://eips.ethereum.org/EIPS/eip-2535) are the source inspiration for Thirdweb's [Dynamic Contracts](https://github.com/thirdweb-dev/dynamic-contracts/tree/main) which was the main reference point for this prototype. While Thirdweb's implementation is an attempt at diamond's "leanest, simplest form", I believe there is still more unnecessary weight to shed.
+ERC-2535 pioneered a new pattern for upgradeable contracts, but is also quite heavy and complex. Thirdweb's Dynamic Contracts is an attempt to implement diamond in their "leanest, simplest form" and improve the developer experience. I believe there is still more unnecessary weight to shed.
 
 The most fundamental idea of the diamond pattern is that a diamond will route inbound calls to different implementation contracts, facets, and determines the appropriate facet to use via a mapping of function selectors to addresses. Anything beyond the singular `mapping(bytes4 => address) facets` storage and functions to support reading and writing to it is non-essential.
 
@@ -34,4 +34,4 @@ When designing a beacon, it's important to enable followers to protect themselve
 
 ## Examples
 
-- [MetadataExtension](./examples/MetadataExtension.sol): Only allow operations within a defined time window.
+- [MetadataRouterExtension](./examples/MetadataRouterExtension.sol): Modularize a `tokenURI` function by routing calls through another contract.

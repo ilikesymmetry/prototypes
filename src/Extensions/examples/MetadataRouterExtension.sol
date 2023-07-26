@@ -4,7 +4,7 @@ pragma solidity ^0.8.13;
 import {Extension} from "../Extension.sol";
 
 library MetadataRouterStorage {
-    bytes32 public constant STORAGE_POSITION = keccak256("extensions.mage.metadataRouter.storage");
+    bytes32 public constant STORAGE_POSITION = keccak256("extensions.metadataRouter.storage");
 
     struct Data {
         address metadataRouter;
